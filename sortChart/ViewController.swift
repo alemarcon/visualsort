@@ -12,16 +12,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var chartContainer: UIView!
     
     var valueArray = [Int]()
-    let BARS_COUNT: CGFloat = 40
+    let BARS_COUNT: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         generateChartBars()
     }
-
-
-    func generateChartBars() {
+    
+    private func generateChartBars() {
+        valueArray.removeAll()
+        
         while valueArray.count < Int(BARS_COUNT) {
             let randomNumber = Int.random(in: 1...Int(BARS_COUNT))
             if( !valueArray.contains(randomNumber) ) {
@@ -31,7 +32,11 @@ class ViewController: UIViewController {
         drawBars()
     }
     
-    func drawBars() {
+    private func drawBars() {
+        for subview in chartContainer.subviews {
+            subview.removeFromSuperview()
+        }
+        
         let singleBarWidth = chartContainer.frame.size.width/BARS_COUNT
         let singleBarMinHeight = chartContainer.frame.size.height/BARS_COUNT
         
@@ -51,56 +56,38 @@ class ViewController: UIViewController {
                 )
                 bar.tag = currentNumber
                 bar.backgroundColor = .red
+//                bar.translatesAutoresizingMaskIntoConstraints = false
+                
+                let numberLabel = UILabel()
+                numberLabel.text = "\(currentNumber)"
+                numberLabel.translatesAutoresizingMaskIntoConstraints = false
+                numberLabel.font = UIFont.systemFont(ofSize: 5, weight: .semibold)
+                numberLabel.textAlignment = .center
+                numberLabel.textColor = .white
+                numberLabel.numberOfLines = 1
+                numberLabel.sizeToFit()
+                bar.addSubview(numberLabel)
+                
+                bar.addConstraints([
+                    numberLabel.topAnchor.constraint(equalTo: bar.topAnchor, constant: -8),
+                    numberLabel.centerXAnchor.constraint(equalTo: bar.centerXAnchor)
+                ])
+                
                 self.chartContainer.addSubview(bar)
             }
         }
         
     }
+
+    @IBAction func reloadChart(_ sender: Any) {
+        generateChartBars()
+    }
     
     @IBAction func bubbleSortAlgorithm(_ sender: UIButton) {
-        loopFirstArray(index: 0)
+        let bubbleSort = BubbleSort(array: valueArray, chart: chartContainer, duration: 0.1)
+        bubbleSort.sort()
     }
     
-    func loopFirstArray(index: Int) {
-        if( index < valueArray.count ) {
-            loopSecondArray(innerIndex: 0, outerIndex: index)
-        }
-    }
-    
-    func loopSecondArray(innerIndex: Int, outerIndex: Int) {
-        if( innerIndex < valueArray.count-1 ) {
-            if( valueArray[innerIndex] > valueArray[innerIndex+1] ) {
-                
-                let smallerBarX = self.chartContainer.viewWithTag(valueArray[innerIndex])!.frame.origin.x
-                self.chartContainer.viewWithTag(valueArray[innerIndex])!.backgroundColor = .green
-                let biggerBarX = self.chartContainer.viewWithTag(valueArray[innerIndex+1])!.frame.origin.x
-                self.chartContainer.viewWithTag(valueArray[innerIndex+1])!.backgroundColor = .green
-                swapBars(currentIndex: innerIndex, lowerIndex: innerIndex+1, biggerBarX: biggerBarX, smallerBarX: smallerBarX, outerIndex: outerIndex)
-            } else {
-                self.loopSecondArray(innerIndex: innerIndex+1, outerIndex: outerIndex)
-            }
-        } else {
-            loopFirstArray(index: outerIndex+1)
-        }
-    }
-    
-    func swapBars(currentIndex: Int, lowerIndex: Int, biggerBarX: CGFloat, smallerBarX: CGFloat, outerIndex: Int) {
-        
-        UIView.animate(withDuration: 0.003) {
-            let tmp = self.valueArray[currentIndex]
-            self.chartContainer.viewWithTag(tmp)!.frame.origin.x = biggerBarX
-            self.chartContainer.viewWithTag(self.valueArray[lowerIndex])!.frame.origin.x = smallerBarX
-            self.valueArray[currentIndex] = self.valueArray[lowerIndex]
-            self.valueArray[lowerIndex] = tmp
-            
-        } completion: { completed in
-            if( completed ) {
-                self.chartContainer.viewWithTag(self.valueArray[lowerIndex])!.backgroundColor = .red
-                self.chartContainer.viewWithTag(self.valueArray[currentIndex])!.backgroundColor = .red
-                self.loopSecondArray(innerIndex: currentIndex+1, outerIndex: outerIndex)
-            }
-        }
-    }
     
 }
 

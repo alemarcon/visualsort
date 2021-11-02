@@ -18,28 +18,55 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-o3-mOU">
-                                <rect key="frame" x="47" y="44" width="320" height="350"/>
+                                <rect key="frame" x="47" y="92" width="320" height="350"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" id="Av4-nI-IX4"/>
                                     <constraint firstAttribute="height" constant="350" id="dj3-9l-73x"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60w-Iq-5We">
-                                <rect key="frame" x="10" y="409" width="82" height="30"/>
-                                <state key="normal" title="Bubble Sort"/>
-                                <connections>
-                                    <action selector="bubbleSortAlgorithm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HPs-iR-8Zt"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-NI-r06">
+                                <rect key="frame" x="25" y="467" width="364" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60w-Iq-5We">
+                                        <rect key="frame" x="0.0" y="0.0" width="177" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="o8n-MT-xOy"/>
+                                        </constraints>
+                                        <state key="normal" title="Bubble Sort"/>
+                                        <connections>
+                                            <action selector="bubbleSortAlgorithm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HPs-iR-8Zt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-6s-a65">
+                                        <rect key="frame" x="187" y="0.0" width="177" height="45"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Reload"/>
+                                        <connections>
+                                            <action selector="reloadChart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BeM-h5-ii2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort animation chart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zub-uj-V6C">
+                                <rect key="frame" x="10" y="49" width="394" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="60w-Iq-5We" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="bottom" constant="15" id="4IV-zL-1lZ"/>
+                            <constraint firstItem="b8f-NI-r06" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="3bQ-9N-Ebq"/>
+                            <constraint firstItem="zub-uj-V6C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Efh-lv-g7M"/>
+                            <constraint firstItem="b8f-NI-r06" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="bottom" constant="25" id="Ju5-ob-3dF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" constant="25" id="Lsn-vI-gSo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zub-uj-V6C" secondAttribute="trailing" constant="10" id="e7J-eR-4Kj"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="khW-kX-GSX"/>
-                            <constraint firstItem="60w-Iq-5We" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="pP8-t2-tst"/>
-                            <constraint firstItem="H0x-o3-mOU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="v1O-Aw-CUN"/>
+                            <constraint firstItem="H0x-o3-mOU" firstAttribute="top" secondItem="zub-uj-V6C" secondAttribute="bottom" constant="20" id="qKS-a1-oU9"/>
+                            <constraint firstItem="zub-uj-V6C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="wzT-Ov-pcU"/>
                         </constraints>
                     </view>
                     <connections>
@@ -48,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="119"/>
+            <point key="canvasLocation" x="137.68115942028987" y="118.52678571428571"/>
         </scene>
     </scenes>
     <resources>

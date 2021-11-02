@@ -13,6 +13,7 @@
 		2D6B3FAF27297F43004B616F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B3FAD27297F43004B616F /* Main.storyboard */; };
 		2D6B3FB127297F44004B616F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B3FB027297F44004B616F /* Assets.xcassets */; };
 		2D6B3FB427297F44004B616F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D6B3FB227297F44004B616F /* LaunchScreen.storyboard */; };
+		2DBF5EC1272C46E3006B325E /* BubbleSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBF5EC0272C46E3006B325E /* BubbleSort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2D6B3FB027297F44004B616F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D6B3FB327297F44004B616F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D6B3FB527297F44004B616F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DBF5EC0272C46E3006B325E /* BubbleSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleSort.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		2D6B3FA627297F43004B616F /* sortChart */ = {
 			isa = PBXGroup;
 			children = (
+				2DBF5EBE272C46C6006B325E /* Algoritmh */,
 				2D6B3FA727297F43004B616F /* AppDelegate.swift */,
 				2D6B3FA927297F43004B616F /* SceneDelegate.swift */,
 				2D6B3FAB27297F43004B616F /* ViewController.swift */,
@@ -65,6 +68,14 @@
 				2D6B3FB527297F44004B616F /* Info.plist */,
 			);
 			path = sortChart;
+			sourceTree = "<group>";
+		};
+		2DBF5EBE272C46C6006B325E /* Algoritmh */ = {
+			isa = PBXGroup;
+			children = (
+				2DBF5EC0272C46E3006B325E /* BubbleSort.swift */,
+			);
+			path = Algoritmh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +151,7 @@
 				2D6B3FAC27297F43004B616F /* ViewController.swift in Sources */,
 				2D6B3FA827297F43004B616F /* AppDelegate.swift in Sources */,
 				2D6B3FAA27297F43004B616F /* SceneDelegate.swift in Sources */,
+				2DBF5EC1272C46E3006B325E /* BubbleSort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
