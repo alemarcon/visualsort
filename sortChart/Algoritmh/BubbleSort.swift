@@ -10,9 +10,15 @@ import UIKit
 
 class BubbleSort {
     
+    var delegate: SortDelegate?
     private var array: [Int]
     private var chart: UIView
     private var duration: Double
+    
+    //MARK: - Constants
+    private let UNORDERED_BAR_COLOR: UIColor = .red
+    private let ORDERED_BAR_COLOR: UIColor = .blue
+    private let SELECTED_BAR_COLOR: UIColor = .green
     
     init(array: [Int], chart: UIView, duration: Double = 0.003) {
         self.array = array
@@ -27,6 +33,8 @@ class BubbleSort {
     private func loopFirstArray(index: Int) {
         if( index < array.count ) {
             loopSecondArray(innerIndex: 0, outerIndex: index)
+        } else {
+            delegate?.sortCompleted(sortedValues: array)
         }
     }
     
@@ -35,9 +43,9 @@ class BubbleSort {
             if( array[innerIndex] > array[innerIndex+1] ) {
                 
                 let smallerBarX = self.chart.viewWithTag(array[innerIndex])!.frame.origin.x
-                self.chart.viewWithTag(array[innerIndex])!.backgroundColor = .green
+                self.chart.viewWithTag(array[innerIndex])!.backgroundColor = SELECTED_BAR_COLOR
                 let biggerBarX = self.chart.viewWithTag(array[innerIndex+1])!.frame.origin.x
-                self.chart.viewWithTag(array[innerIndex+1])!.backgroundColor = .green
+                self.chart.viewWithTag(array[innerIndex+1])!.backgroundColor = SELECTED_BAR_COLOR
                 swapBars(currentIndex: innerIndex, lowerIndex: innerIndex+1, biggerBarX: biggerBarX, smallerBarX: smallerBarX, outerIndex: outerIndex)
             } else {
                 self.loopSecondArray(innerIndex: innerIndex+1, outerIndex: outerIndex)
@@ -59,15 +67,15 @@ class BubbleSort {
         } completion: { completed in
             if( completed ) {
                 if( lowerIndex+1 == self.array[lowerIndex] ) {
-                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = .blue
+                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = self.ORDERED_BAR_COLOR
                 } else {
-                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = .red
+                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = self.UNORDERED_BAR_COLOR
                 }
                 
                 if( currentIndex+1 == self.array[currentIndex] ) {
-                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = .blue
+                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = self.ORDERED_BAR_COLOR
                 } else {
-                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = .red
+                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = self.UNORDERED_BAR_COLOR
                 }
                 
                 
