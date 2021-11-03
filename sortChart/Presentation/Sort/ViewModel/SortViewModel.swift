@@ -25,7 +25,7 @@ class SortViewModel {
     }
     
     //MARK: - Private properties
-    private var unorderedRandomValues = [Int]()
+    private var unorderedRandomValueBars = [ChartBarView]()
     private(set) var state: CurrentValueSubject<State, Never> = .init(.none)
     
     //MARK: - Private constants
@@ -39,12 +39,12 @@ class SortViewModel {
     /// Generate random Int values
     func generateRandomValues() {
         state.send(.generatingRandomValues)
-        unorderedRandomValues.removeAll()
+        unorderedRandomValueBars.removeAll()
         
-        while unorderedRandomValues.count < Int(NUMBER_OF_ELEMENTS) {
+        while unorderedRandomValueBars.count < Int(NUMBER_OF_ELEMENTS) {
             let randomNumber = Int.random(in: 1...Int(NUMBER_OF_ELEMENTS))
-            if( !unorderedRandomValues.contains(randomNumber) ) {
-                unorderedRandomValues.append( randomNumber )
+            if( unorderedRandomValueBars.first(where: ({ $0.getChartBarValue() == randomNumber })) == nil ) {
+                unorderedRandomValueBars.append( ChartBarView(value: randomNumber) )
             }
         }
         
@@ -52,14 +52,14 @@ class SortViewModel {
     }
     
     func randomValuesCount() -> Int {
-        return unorderedRandomValues.count
+        return unorderedRandomValueBars.count
     }
     
-    func getValueAt(index: Int) -> Int {
-        if( index >= 0 && unorderedRandomValues.count > index ) {
-            return unorderedRandomValues[index]
+    func getBarAt(index: Int) -> ChartBarView {
+        if( index >= 0 && unorderedRandomValueBars.count > index ) {
+            return unorderedRandomValueBars[index]
         } else {
-            return 0
+            return ChartBarView(value: 0)
         }
     }
     
@@ -72,7 +72,7 @@ class SortViewModel {
         
         switch algorithm {
         case .bubbleSort:
-            let bubbleSort = BubbleSort(array: unorderedRandomValues, chart: chartView, duration: 0.1)
+            let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
             bubbleSort.delegate = self
             bubbleSort.sort()
         }
@@ -82,8 +82,9 @@ class SortViewModel {
 
 extension SortViewModel: SortDelegate {
     
-    func sortCompleted(sortedValues: [Int]) {
-        self.unorderedRandomValues = sortedValues
+    func sortCompleted(sortedValues: [ChartBarView]) {
+        print("Sorting completed")
+        self.unorderedRandomValueBars = sortedValues
         state.send(.randomValuesSorted)
     }
     

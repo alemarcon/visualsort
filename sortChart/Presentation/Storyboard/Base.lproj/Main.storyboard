@@ -55,21 +55,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NKz-kn-wZV">
+                                <rect key="frame" x="47" y="537" width="320" height="310"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="3bQ-9N-Ebq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NKz-kn-wZV" secondAttribute="bottom" constant="15" id="7vn-75-HTA"/>
+                            <constraint firstItem="NKz-kn-wZV" firstAttribute="leading" secondItem="H0x-o3-mOU" secondAttribute="leading" id="EX2-H3-aHm"/>
                             <constraint firstItem="zub-uj-V6C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Efh-lv-g7M"/>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="bottom" constant="25" id="Ju5-ob-3dF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" constant="25" id="Lsn-vI-gSo"/>
+                            <constraint firstItem="NKz-kn-wZV" firstAttribute="top" secondItem="b8f-NI-r06" secondAttribute="bottom" constant="25" id="Vnx-Ay-mTX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zub-uj-V6C" secondAttribute="trailing" constant="10" id="e7J-eR-4Kj"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="khW-kX-GSX"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="top" secondItem="zub-uj-V6C" secondAttribute="bottom" constant="20" id="qKS-a1-oU9"/>
                             <constraint firstItem="zub-uj-V6C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="wzT-Ov-pcU"/>
+                            <constraint firstItem="NKz-kn-wZV" firstAttribute="trailing" secondItem="H0x-o3-mOU" secondAttribute="trailing" id="y3w-Ff-XSY"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="algorithmsTable" destination="NKz-kn-wZV" id="aE5-8y-QTL"/>
                         <outlet property="chartContainer" destination="H0x-o3-mOU" id="Ptj-ez-mrx"/>
                     </connections>
                 </viewController>
@@ -79,6 +88,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

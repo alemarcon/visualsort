@@ -11,7 +11,7 @@ import UIKit
 class BubbleSort {
     
     var delegate: SortDelegate?
-    private var array: [Int]
+    private var chartsArray: [ChartBarView]?
     private var chart: UIView
     private var duration: Double
     
@@ -20,8 +20,8 @@ class BubbleSort {
     private let ORDERED_BAR_COLOR: UIColor = .blue
     private let SELECTED_BAR_COLOR: UIColor = .green
     
-    init(array: [Int], chart: UIView, duration: Double = 0.003) {
-        self.array = array
+    init(chartsArray: [ChartBarView], chart: UIView, duration: Double = 0.003) {
+        self.chartsArray = chartsArray
         self.chart = chart
         self.duration = duration
     }
@@ -31,55 +31,60 @@ class BubbleSort {
     }
     
     private func loopFirstArray(index: Int) {
-        if( index < array.count ) {
-            loopSecondArray(innerIndex: 0, outerIndex: index)
+        if( index < chartsArray?.count ?? 0 ) {
+            loopSecondArrayNew(innerIndex: 0, outerIndex: index)
         } else {
-            delegate?.sortCompleted(sortedValues: array)
+            delegate?.sortCompleted(sortedValues: chartsArray!)
         }
     }
     
-    private func loopSecondArray(innerIndex: Int, outerIndex: Int) {
-        if( innerIndex < array.count-1 ) {
-            if( array[innerIndex] > array[innerIndex+1] ) {
+    
+    private func loopSecondArrayNew(innerIndex: Int, outerIndex: Int) {
+        if( innerIndex < chartsArray!.count-1 ) {
+            if( chartsArray![innerIndex].getChartBarValue() > chartsArray![innerIndex+1].getChartBarValue() ) {
                 
-                let smallerBarX = self.chart.viewWithTag(array[innerIndex])!.frame.origin.x
-                self.chart.viewWithTag(array[innerIndex])!.backgroundColor = SELECTED_BAR_COLOR
-                let biggerBarX = self.chart.viewWithTag(array[innerIndex+1])!.frame.origin.x
-                self.chart.viewWithTag(array[innerIndex+1])!.backgroundColor = SELECTED_BAR_COLOR
-                swapBars(currentIndex: innerIndex, lowerIndex: innerIndex+1, biggerBarX: biggerBarX, smallerBarX: smallerBarX, outerIndex: outerIndex)
+                if let biggerBar = chartsArray?[innerIndex], let smallerBar = chartsArray?[innerIndex+1] {
+                    swapBarsNew(biggerBar: biggerBar, smallerBar: smallerBar, outerIndex: outerIndex, currentIndex: innerIndex, lowerIndex: innerIndex+1)
+                }
+
             } else {
-                self.loopSecondArray(innerIndex: innerIndex+1, outerIndex: outerIndex)
+                self.loopSecondArrayNew(innerIndex: innerIndex+1, outerIndex: outerIndex)
             }
         } else {
             loopFirstArray(index: outerIndex+1)
         }
     }
     
-    private func swapBars(currentIndex: Int, lowerIndex: Int, biggerBarX: CGFloat, smallerBarX: CGFloat, outerIndex: Int) {
+    private func swapBarsNew(biggerBar: ChartBarView, smallerBar: ChartBarView, outerIndex: Int, currentIndex: Int, lowerIndex: Int) {
         
         UIView.animate(withDuration: duration) {
-            let tmp = self.array[currentIndex]
-            self.chart.viewWithTag(tmp)!.frame.origin.x = biggerBarX
-            self.chart.viewWithTag(self.array[lowerIndex])!.frame.origin.x = smallerBarX
-            self.array[currentIndex] = self.array[lowerIndex]
-            self.array[lowerIndex] = tmp
+            
+            let biggerBarXPosition = biggerBar.getXPosition()
+            let smallerBarXPosition = smallerBar.getXPosition()
+            
+            self.chart.viewWithTag(biggerBar.getChartBarValue())!.frame.origin.x = smallerBarXPosition
+            self.chart.viewWithTag(smallerBar.getChartBarValue())!.frame.origin.x = biggerBarXPosition
+            smallerBar.setXPosition(biggerBarXPosition)
+            biggerBar.setXPosition(smallerBarXPosition)
+            self.chartsArray![currentIndex] = smallerBar
+            self.chartsArray![lowerIndex] = biggerBar
             
         } completion: { completed in
             if( completed ) {
-                if( lowerIndex+1 == self.array[lowerIndex] ) {
-                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = self.ORDERED_BAR_COLOR
+                
+                if( lowerIndex+1 == self.chartsArray![lowerIndex].getChartBarValue() ) {
+                    biggerBar.setColorFor(position: .ordered)
                 } else {
-                    self.chart.viewWithTag(self.array[lowerIndex])!.backgroundColor = self.UNORDERED_BAR_COLOR
+                    biggerBar.setColorFor(position: .unordered)
                 }
                 
-                if( currentIndex+1 == self.array[currentIndex] ) {
-                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = self.ORDERED_BAR_COLOR
+                if( currentIndex+1 == self.chartsArray![currentIndex].getChartBarValue() ) {
+                    smallerBar.setColorFor(position: .ordered)
                 } else {
-                    self.chart.viewWithTag(self.array[currentIndex])!.backgroundColor = self.UNORDERED_BAR_COLOR
+                    smallerBar.setColorFor(position: .unordered)
                 }
-                
-                
-                self.loopSecondArray(innerIndex: currentIndex+1, outerIndex: outerIndex)
+
+                self.loopSecondArrayNew(innerIndex: currentIndex+1, outerIndex: outerIndex)
             }
         }
     }

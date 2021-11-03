@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SortDelegate {
-    func sortCompleted(sortedValues: [Int])
+    func sortCompleted(sortedValues: [ChartBarView])
 }

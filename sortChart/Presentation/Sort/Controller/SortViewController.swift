@@ -11,16 +11,18 @@ import Combine
 class ViewController: UIViewController {
     
     @IBOutlet weak var chartContainer: UIView!
+    @IBOutlet weak var algorithmsTable: UITableView!
     
     var viewModel = SortViewModel()
     var subscriptions: Set<AnyCancellable> = .init()
-    
-    private let UNORDERED_BAR_COLOR: UIColor = .red
+
+    private let algorithms = ["Bubble Sort"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         bindViewModel()
+        algorithmsTable.dataSource = self
         viewModel.generateRandomValues()
     }
     
@@ -50,44 +52,15 @@ class ViewController: UIViewController {
     private func drawBars() {
         let singleBarWidth = chartContainer.frame.size.width/CGFloat(viewModel.getNumberOfElements())
         let singleBarMinHeight = chartContainer.frame.size.height/CGFloat(viewModel.getNumberOfElements())
-        
-        DispatchQueue.main.async {
-            
-            for index in 0..<self.viewModel.randomValuesCount() {
-                let currentNumber = self.viewModel.getValueAt(index: index)
-                let currentHeight = CGFloat(currentNumber)*singleBarMinHeight
-                let barX = singleBarWidth*CGFloat(index)
-                let barY = self.chartContainer.bounds.size.height
-                
-                let bar = UIView(frame: CGRect(
-                                    x: barX,
-                                    y: barY,
-                                    width: singleBarWidth,
-                                    height: -currentHeight)
-                )
-                
-                bar.tag = currentNumber
-                bar.backgroundColor = self.UNORDERED_BAR_COLOR
-                
-                let numberLabel = UILabel()
-                numberLabel.text = "\(currentNumber)"
-                numberLabel.translatesAutoresizingMaskIntoConstraints = false
-                numberLabel.font = UIFont.systemFont(ofSize: 5, weight: .semibold)
-                numberLabel.textAlignment = .center
-                numberLabel.textColor = .white
-                numberLabel.numberOfLines = 1
-                numberLabel.sizeToFit()
-                bar.addSubview(numberLabel)
-                
-                bar.addConstraints([
-                    numberLabel.topAnchor.constraint(equalTo: bar.topAnchor, constant: -8),
-                    numberLabel.centerXAnchor.constraint(equalTo: bar.centerXAnchor)
-                ])
-                
-                self.chartContainer.addSubview(bar)
-            }
-        }
-        
+
+        for index in 0..<self.viewModel.randomValuesCount() {
+            let barAtCurrentIndex = self.viewModel.getBarAt(index: index)
+            let currentBarHeight = CGFloat(barAtCurrentIndex.getChartBarValue())*singleBarMinHeight
+            let currentBarX = singleBarWidth*CGFloat(index)
+            let currentBarY = self.chartContainer.bounds.size.height
+            barAtCurrentIndex.setupBarFrame(x: currentBarX, y: currentBarY, h: -currentBarHeight, w: singleBarWidth)
+            self.chartContainer.addSubview(barAtCurrentIndex)
+        }        
     }
     
     private func cleanChartsView() {
@@ -107,3 +80,15 @@ class ViewController: UIViewController {
     
 }
 
+
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return algorithms.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+}
