@@ -80,7 +80,7 @@ class SortViewModel {
 
 extension SortViewModel: SortDelegate {
     
-    func sortCompleted(sortedValues: [ChartBarView]) {
+    func sortingCompleted(sortedValues: [ChartBarView]) {
         print("Sorting completed")
         self.unorderedRandomValueBars = sortedValues
         state.send(.randomValuesSorted)

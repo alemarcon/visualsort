@@ -21,7 +21,7 @@ class AlgorithmTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         
-        backgroundContainer.roundCorner(radius: 5.0)
+        backgroundContainer.roundCorner(radius: 6.0)
         selectedFlagView.backgroundColor = .clear
         name.text = ""
         sortImage.image = nil
