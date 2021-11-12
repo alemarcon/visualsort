@@ -22,11 +22,6 @@ class ChartBarView: UIView {
     private var numberLabel: UILabel?
     private var chartBarValue: Int
     
-    //MARK: - Constants
-    private let UNORDERED_BAR_COLOR: UIColor = .red
-    private let ORDERED_BAR_COLOR: UIColor = .blue
-    private let SELECTED_BAR_COLOR: UIColor = .green
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,6 +33,7 @@ class ChartBarView: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         self.tag = chartBarValue
+        self.roundCorner(radius: 2.0)
         setColorFor(position: .unordered)
         prepareLabel()
     }
@@ -61,7 +57,7 @@ class ChartBarView: UIView {
         if let lbl = numberLabel {
             self.addSubview(lbl)
             self.addConstraints([
-                lbl.topAnchor.constraint(equalTo: self.topAnchor, constant: -8),
+                lbl.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
                 lbl.centerXAnchor.constraint(equalTo: self.centerXAnchor)
             ])
         }
@@ -96,11 +92,11 @@ class ChartBarView: UIView {
     func setColorFor(position: Position) {
         switch position {
         case .unordered:
-            self.backgroundColor = self.UNORDERED_BAR_COLOR
+            self.backgroundColor = UIColor.Custom.unordered
         case .ordered:
-            self.backgroundColor = self.ORDERED_BAR_COLOR
+            self.backgroundColor = UIColor.Custom.ordered
         case .selected:
-            self.backgroundColor = self.SELECTED_BAR_COLOR
+            self.backgroundColor = UIColor.Custom.selected
         }
     }
 }

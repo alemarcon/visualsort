@@ -16,9 +16,9 @@ class BubbleSort {
     private var duration: Double
     
     //MARK: - Constants
-    private let UNORDERED_BAR_COLOR: UIColor = .red
-    private let ORDERED_BAR_COLOR: UIColor = .blue
-    private let SELECTED_BAR_COLOR: UIColor = .green
+//    private let UNORDERED_BAR_COLOR: UIColor = .red
+//    private let ORDERED_BAR_COLOR: UIColor = .blue
+//    private let SELECTED_BAR_COLOR: UIColor = .green
     
     init(chartsArray: [ChartBarView], chart: UIView, duration: Double = 0.003) {
         self.chartsArray = chartsArray

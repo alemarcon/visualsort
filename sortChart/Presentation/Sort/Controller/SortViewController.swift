@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var viewModel = SortViewModel()
     var subscriptions: Set<AnyCancellable> = .init()
 
-    private let algorithms = ["Bubble Sort"]
+    private var algorithms: [AlgorithmModel]!
     private let BAR_X_OFFSET = CGFloat(1)
     private let BAR_Y_OFFSET = CGFloat(2)
     private let BAR_HEIGHT_OFFSET = CGFloat(3)
@@ -27,13 +27,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         customizeUI()
+        algorithms = AlgorithmModelRepository.generateAlgorithms()
         bindViewModel()
-        algorithmsTable.dataSource = self
         viewModel.generateRandomValues()
     }
     
     private func customizeUI() {
         chartContainer.roundCorner(radius: 5.0)
+        algorithmsTable.dataSource = self
+        algorithmsTable.delegate = self
+        algorithmsTable.register(UINib(nibName: AlgorithmTableViewCell.XIB_NAME, bundle: nil), forCellReuseIdentifier: AlgorithmTableViewCell.IDENTIFIER)
     }
     
     private func bindViewModel() {
@@ -98,7 +101,18 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: AlgorithmTableViewCell.IDENTIFIER) as? AlgorithmTableViewCell {
+            cell.setup(algorithm: algorithms[indexPath.row])
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(98)
+    }
 }

@@ -13,14 +13,18 @@ class AlgorithmTableViewCell: UITableViewCell {
     static let IDENTIFIER = "algorithm_cell"
 
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var backgroundContainer: UIView!
+    @IBOutlet weak var sortImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundContainer.roundCorner(radius: 5.0)
         name.text = ""
+        sortImage.image = nil
     }
     
-    func setup(algorithmName: String) {
-        self.name.text = algorithmName
+    func setup(algorithm: AlgorithmModel) {
+        self.name.text = algorithm.name
+        self.sortImage.image = UIImage(named: algorithm.imageName)
     }
 }

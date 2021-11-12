@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +19,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-o3-mOU">
                                 <rect key="frame" x="37" y="92" width="340" height="350"/>
-                                <color key="backgroundColor" white="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="Overlay"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="340" id="Av4-nI-IX4"/>
                                     <constraint firstAttribute="height" constant="350" id="dj3-9l-73x"/>
@@ -31,11 +30,14 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60w-Iq-5We">
                                         <rect key="frame" x="0.0" y="0.0" width="177" height="45"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Selected"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="o8n-MT-xOy"/>
                                         </constraints>
-                                        <state key="normal" title="Bubble Sort"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Bubble Sort">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="bubbleSortAlgorithm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HPs-iR-8Zt"/>
                                         </connections>
@@ -56,20 +58,30 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NKz-kn-wZV">
-                                <rect key="frame" x="25" y="537" width="364" height="325"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NKz-kn-wZV">
+                                <rect key="frame" x="25" y="565" width="364" height="297"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort Algorithms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faB-iF-uli">
+                                <rect key="frame" x="25" y="537" width="364" height="23"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="3bQ-9N-Ebq"/>
                             <constraint firstItem="zub-uj-V6C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Efh-lv-g7M"/>
+                            <constraint firstItem="faB-iF-uli" firstAttribute="top" secondItem="b8f-NI-r06" secondAttribute="bottom" constant="25" id="FGJ-hg-6Np"/>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="bottom" constant="25" id="Ju5-ob-3dF"/>
                             <constraint firstItem="NKz-kn-wZV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="LBA-TX-AXS"/>
+                            <constraint firstItem="faB-iF-uli" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" id="LfP-Wp-6Mo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" constant="25" id="Lsn-vI-gSo"/>
-                            <constraint firstItem="NKz-kn-wZV" firstAttribute="top" secondItem="b8f-NI-r06" secondAttribute="bottom" constant="25" id="Vnx-Ay-mTX"/>
+                            <constraint firstItem="faB-iF-uli" firstAttribute="leading" secondItem="b8f-NI-r06" secondAttribute="leading" id="SCn-y6-TUm"/>
+                            <constraint firstItem="NKz-kn-wZV" firstAttribute="top" secondItem="faB-iF-uli" secondAttribute="bottom" constant="5" id="WWE-55-tBo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKz-kn-wZV" secondAttribute="trailing" constant="25" id="Ydm-u3-W9H"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zub-uj-V6C" secondAttribute="trailing" constant="10" id="e7J-eR-4Kj"/>
                             <constraint firstItem="NKz-kn-wZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="e9m-QR-zUz"/>
@@ -90,10 +102,13 @@
     </scenes>
     <resources>
         <namedColor name="Background">
-            <color red="0.18431372549019609" green="0.21176470588235294" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="Overlay">
+            <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Selected">
+            <color red="0.4823529411764706" green="0.92941176470588238" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

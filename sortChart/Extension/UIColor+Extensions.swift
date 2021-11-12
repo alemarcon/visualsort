@@ -60,6 +60,10 @@ extension UIColor {
     // Color from https://flatuicolors.com/palette/gb
     struct Custom {
         //MARK: - Buttons color
-        static let backgroundColor = UIColor(hex: 0x2f3640)
+        static let backgroundColor = UIColor(hex: 0x121212)
+        static let unordered = UIColor(hex: 0x718093)
+        static let selected = UIColor(hex: 0x7BED9F)
+        static let ordered = UIColor(hex: 0xBB86FC)
+        static let overlay = UIColor(hex: 0x9E9E9E)
     }
 }
