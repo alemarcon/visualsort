@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     var viewModel = SortViewModel()
     var subscriptions: Set<AnyCancellable> = .init()
-
+    
     private var algorithms: [AlgorithmModel]!
     private let BAR_X_OFFSET = CGFloat(1)
     private let BAR_Y_OFFSET = CGFloat(2)
@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     private let CHART_WIDTH_OFFSET = CGFloat(21)
     private var isUIUnlocked = true
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +74,7 @@ class ViewController: UIViewController {
     private func drawBars() {
         let singleBarWidth = (chartContainer.frame.size.width-CHART_WIDTH_OFFSET)/CGFloat(viewModel.getNumberOfElements())
         let singleBarMinHeight = chartContainer.frame.size.height/CGFloat(viewModel.getNumberOfElements())
-
+        
         for index in 0..<self.viewModel.randomValuesCount() {
             let barAtCurrentIndex = self.viewModel.getBarAt(index: index)
             let currentBarHeight = (CGFloat(barAtCurrentIndex.getChartBarValue())*singleBarMinHeight)-BAR_HEIGHT_OFFSET
@@ -91,7 +94,7 @@ class ViewController: UIViewController {
     private func lockUI(isUnLocked: Bool) {
         isUIUnlocked = isUnLocked
     }
-
+    
     @IBAction func reloadChart(_ sender: Any) {
         if( isUIUnlocked ) {
             viewModel.generateRandomValues()
