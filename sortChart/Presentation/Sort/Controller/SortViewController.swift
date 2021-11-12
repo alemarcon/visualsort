@@ -132,7 +132,11 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(98)
+        if( UIScreen.main.bounds.size.width > 400 ) {
+            return CGFloat(98)
+        } else {
+            return CGFloat(60)
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

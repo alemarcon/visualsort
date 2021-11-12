@@ -26,7 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D6B3FA427297F43004B616F /* sortChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sortChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D6B3FA427297F43004B616F /* Visual Sort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Visual Sort.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6B3FA727297F43004B616F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D6B3FA927297F43004B616F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2D6B3FAB27297F43004B616F /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		2D6B3FA527297F43004B616F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2D6B3FA427297F43004B616F /* sortChart.app */,
+				2D6B3FA427297F43004B616F /* Visual Sort.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 			);
 			name = sortChart;
 			productName = sortChart;
-			productReference = 2D6B3FA427297F43004B616F /* sortChart.app */;
+			productReference = 2D6B3FA427297F43004B616F /* Visual Sort.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -430,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ale.sortChart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Visual Sort";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -449,7 +449,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ale.sortChart;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Visual Sort";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
