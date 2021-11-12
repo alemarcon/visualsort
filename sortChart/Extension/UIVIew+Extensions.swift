@@ -14,6 +14,8 @@ extension UIView {
     func roundCorner(radius: CGFloat) {
         if( radius > 0.0 ) {
             layer.cornerRadius = radius
+            self.clipsToBounds = true
+            self.layoutIfNeeded()
         }
     }
     

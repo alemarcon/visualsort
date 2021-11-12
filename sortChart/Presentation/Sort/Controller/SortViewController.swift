@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     private let BAR_Y_OFFSET = CGFloat(2)
     private let BAR_HEIGHT_OFFSET = CGFloat(3)
     private let CHART_WIDTH_OFFSET = CGFloat(21)
+    private var isUIUnlocked = true
     
     
     override func viewDidLoad() {
@@ -46,16 +47,21 @@ class ViewController: UIViewController {
             switch state {
             case .none:
                 print("None")
+                self.lockUI(isUnLocked: true)
             case .generatingRandomValues:
                 print("Generating random values")
+                self.lockUI(isUnLocked: false)
                 self.cleanChartsView()
             case .randomValuesGenerated:
                 print("Random values generated")
                 self.drawBars()
+                self.lockUI(isUnLocked: true)
             case .sortingRandomValues:
                 print("Sorting values")
+                self.lockUI(isUnLocked: false)
             case .randomValuesSorted:
                 print("Value sorted")
+                self.lockUI(isUnLocked: true)
             }
             
         }.store(in: &subscriptions)
@@ -81,13 +87,23 @@ class ViewController: UIViewController {
             subview.removeFromSuperview()
         }
     }
+    
+    private func lockUI(isUnLocked: Bool) {
+        isUIUnlocked = isUnLocked
+    }
 
     @IBAction func reloadChart(_ sender: Any) {
-        viewModel.generateRandomValues()
+        if( isUIUnlocked ) {
+            viewModel.generateRandomValues()
+        }
     }
     
-    @IBAction func bubbleSortAlgorithm(_ sender: UIButton) {
-        viewModel.sortValuesWith(algorithm: .bubbleSort, chartView: chartContainer)
+    @IBAction func sortAlgorithm(_ sender: UIButton) {
+        if( isUIUnlocked ) {
+            if let alg = algorithms.first(where: { $0.selected }) {
+                viewModel.sortValuesWith(algorithm: alg.type, chartView: chartContainer)
+            }
+        }
     }
     
     
@@ -114,5 +130,16 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(98)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if( isUIUnlocked ) {
+            for index in 0..<algorithms.count {
+                algorithms[index].selected = indexPath.row == index ? true : false
+                if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlgorithmTableViewCell {
+                    cell.setSelected(algorithms[index].selected)
+                }
+            }
+        }
     }
 }

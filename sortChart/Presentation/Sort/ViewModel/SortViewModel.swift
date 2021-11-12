@@ -9,10 +9,6 @@ import Foundation
 import Combine
 import UIKit
 
-enum Algorithm {
-    case bubbleSort
-}
-
 class SortViewModel {
     
     //MARK: - View model state
@@ -67,7 +63,7 @@ class SortViewModel {
         return NUMBER_OF_ELEMENTS
     }
     
-    func sortValuesWith(algorithm: Algorithm, chartView: UIView) {
+    func sortValuesWith(algorithm: SortAlgorithm, chartView: UIView) {
         state.send(.sortingRandomValues)
         
         switch algorithm {
@@ -75,6 +71,8 @@ class SortViewModel {
             let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
             bubbleSort.delegate = self
             bubbleSort.sort()
+        default:
+            print("Sort algorithm unknown")
         }
     }
 }

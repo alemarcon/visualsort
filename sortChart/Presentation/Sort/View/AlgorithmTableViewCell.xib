@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,36 +20,46 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBO-hD-ghl">
-                        <rect key="frame" x="0.0" y="10" width="333" height="78"/>
+                        <rect key="frame" x="0.0" y="5" width="333" height="88"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JGI-tX-7BY">
-                                <rect key="frame" x="20" y="18.5" width="41" height="41"/>
+                                <rect key="frame" x="23" y="23.5" width="41" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="41" id="CVI-yz-IT8"/>
                                     <constraint firstAttribute="height" constant="41" id="Chf-Jo-dsA"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO5-Om-hsv">
-                                <rect key="frame" x="76" y="28.5" width="247" height="21"/>
+                                <rect key="frame" x="79" y="33.5" width="244" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhU-Af-O2c">
+                                <rect key="frame" x="0.0" y="0.0" width="8" height="88"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="8" id="0ak-l1-smZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="Overlay"/>
                         <constraints>
                             <constraint firstItem="nO5-Om-hsv" firstAttribute="centerY" secondItem="JGI-tX-7BY" secondAttribute="centerY" id="0La-ru-lya"/>
                             <constraint firstItem="nO5-Om-hsv" firstAttribute="leading" secondItem="JGI-tX-7BY" secondAttribute="trailing" constant="15" id="BDQ-IJ-PGR"/>
-                            <constraint firstItem="JGI-tX-7BY" firstAttribute="leading" secondItem="YBO-hD-ghl" secondAttribute="leading" constant="20" id="Grs-ql-yzP"/>
+                            <constraint firstItem="mhU-Af-O2c" firstAttribute="leading" secondItem="YBO-hD-ghl" secondAttribute="leading" id="Iwc-h3-GHf"/>
+                            <constraint firstItem="mhU-Af-O2c" firstAttribute="top" secondItem="YBO-hD-ghl" secondAttribute="top" id="NeW-Mp-Mq3"/>
+                            <constraint firstAttribute="bottom" secondItem="mhU-Af-O2c" secondAttribute="bottom" id="NgU-II-X4K"/>
                             <constraint firstAttribute="trailing" secondItem="nO5-Om-hsv" secondAttribute="trailing" constant="10" id="cnv-3u-AlV"/>
                             <constraint firstItem="JGI-tX-7BY" firstAttribute="centerY" secondItem="YBO-hD-ghl" secondAttribute="centerY" id="j9A-Mr-CVL"/>
+                            <constraint firstItem="JGI-tX-7BY" firstAttribute="leading" secondItem="mhU-Af-O2c" secondAttribute="trailing" constant="15" id="ox8-ZZ-FOs"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="YBO-hD-ghl" secondAttribute="bottom" constant="10" id="9lF-8M-hLj"/>
-                    <constraint firstItem="YBO-hD-ghl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="AeO-aF-QNp"/>
+                    <constraint firstAttribute="bottom" secondItem="YBO-hD-ghl" secondAttribute="bottom" constant="5" id="9lF-8M-hLj"/>
+                    <constraint firstItem="YBO-hD-ghl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="AeO-aF-QNp"/>
                     <constraint firstItem="YBO-hD-ghl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="b2B-0g-FkJ"/>
                     <constraint firstAttribute="trailing" secondItem="YBO-hD-ghl" secondAttribute="trailing" id="vQb-2P-2bz"/>
                 </constraints>
@@ -58,6 +69,7 @@
             <connections>
                 <outlet property="backgroundContainer" destination="YBO-hD-ghl" id="5k1-nH-slP"/>
                 <outlet property="name" destination="nO5-Om-hsv" id="KOU-UA-vku"/>
+                <outlet property="selectedFlagView" destination="mhU-Af-O2c" id="4Lk-cl-fhK"/>
                 <outlet property="sortImage" destination="JGI-tX-7BY" id="kCY-wQ-ejW"/>
             </connections>
             <point key="canvasLocation" x="147.10144927536234" y="152.67857142857142"/>
@@ -67,5 +79,8 @@
         <namedColor name="Overlay">
             <color red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
