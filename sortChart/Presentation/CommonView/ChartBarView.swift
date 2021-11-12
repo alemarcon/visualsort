@@ -19,8 +19,6 @@ class ChartBarView: UIView {
     //MARK: - Variables
     private var xPosition: CGFloat
     private var yPosition: CGFloat
-//    private var height: CGFloat?
-//    private var width: CGFloat?
     private var numberLabel: UILabel?
     private var chartBarValue: Int
     
@@ -32,27 +30,6 @@ class ChartBarView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    init(x: CGFloat, y: CGFloat, h: CGFloat, w: CGFloat, number: Int) {
-//        self.xPosition = x
-//        self.yPosition = y
-//        self.height = h
-//        self.width = w
-//        self.chartBarValue = number
-//        super.init(frame: CGRect(x: xPosition!, y: yPosition!, width: width!, height: height!))
-//        prepareLabel()
-//
-//        self.tag = chartBarValue
-//        setColorFor(position: .unordered)
-//
-//        if let lbl = numberLabel {
-//            self.addSubview(lbl)
-//            self.addConstraints([
-//                lbl.topAnchor.constraint(equalTo: self.topAnchor, constant: -8),
-//                lbl.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-//            ])
-//        }
-//    }
     
     init(value: Int) {
         self.chartBarValue = value
@@ -92,7 +69,6 @@ class ChartBarView: UIView {
     
     func getXPosition() -> CGFloat {
         return xPosition
-//        return self.frame.origin.x
     }
     
     func setXPosition(_ x: CGFloat) {
@@ -102,7 +78,6 @@ class ChartBarView: UIView {
     
     func getYPosition() -> CGFloat {
         return yPosition
-//        return self.frame.origin.y
     }
     
     func setYPosition(_ y: CGFloat) {

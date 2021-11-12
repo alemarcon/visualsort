@@ -44,6 +44,8 @@ class BubbleSort {
             if( chartsArray![innerIndex].getChartBarValue() > chartsArray![innerIndex+1].getChartBarValue() ) {
                 
                 if let biggerBar = chartsArray?[innerIndex], let smallerBar = chartsArray?[innerIndex+1] {
+                    biggerBar.setColorFor(position: .selected)
+                    smallerBar.setColorFor(position: .selected)
                     swapBarsNew(biggerBar: biggerBar, smallerBar: smallerBar, outerIndex: outerIndex, currentIndex: innerIndex, lowerIndex: innerIndex+1)
                 }
 

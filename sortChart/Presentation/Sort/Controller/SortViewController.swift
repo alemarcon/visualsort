@@ -17,13 +17,23 @@ class ViewController: UIViewController {
     var subscriptions: Set<AnyCancellable> = .init()
 
     private let algorithms = ["Bubble Sort"]
+    private let BAR_X_OFFSET = CGFloat(1)
+    private let BAR_Y_OFFSET = CGFloat(2)
+    private let BAR_HEIGHT_OFFSET = CGFloat(3)
+    private let CHART_WIDTH_OFFSET = CGFloat(21)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        customizeUI()
         bindViewModel()
         algorithmsTable.dataSource = self
         viewModel.generateRandomValues()
+    }
+    
+    private func customizeUI() {
+        chartContainer.roundCorner(radius: 5.0)
     }
     
     private func bindViewModel() {
@@ -50,14 +60,14 @@ class ViewController: UIViewController {
     }
     
     private func drawBars() {
-        let singleBarWidth = chartContainer.frame.size.width/CGFloat(viewModel.getNumberOfElements())
+        let singleBarWidth = (chartContainer.frame.size.width-CHART_WIDTH_OFFSET)/CGFloat(viewModel.getNumberOfElements())
         let singleBarMinHeight = chartContainer.frame.size.height/CGFloat(viewModel.getNumberOfElements())
 
         for index in 0..<self.viewModel.randomValuesCount() {
             let barAtCurrentIndex = self.viewModel.getBarAt(index: index)
-            let currentBarHeight = CGFloat(barAtCurrentIndex.getChartBarValue())*singleBarMinHeight
-            let currentBarX = singleBarWidth*CGFloat(index)
-            let currentBarY = self.chartContainer.bounds.size.height
+            let currentBarHeight = (CGFloat(barAtCurrentIndex.getChartBarValue())*singleBarMinHeight)-BAR_HEIGHT_OFFSET
+            let currentBarX = ((singleBarWidth+BAR_X_OFFSET)*CGFloat(index))+BAR_X_OFFSET
+            let currentBarY = self.chartContainer.bounds.size.height-BAR_Y_OFFSET
             barAtCurrentIndex.setupBarFrame(x: currentBarX, y: currentBarY, h: -currentBarHeight, w: singleBarWidth)
             self.chartContainer.addSubview(barAtCurrentIndex)
         }        
