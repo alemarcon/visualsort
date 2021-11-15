@@ -19,18 +19,23 @@ class SortViewModel {
         case sortingRandomValues
         case randomValuesSorted
     }
+    //MARK: - Public properties
+    var algorithms = [AlgorithmModel]()
     
     //MARK: - Private properties
     private var unorderedRandomValueBars = [ChartBarView]()
+    private var repository: AlgorithmModelRepository?
+    private var bubbleSort: BubbleSort?
     private(set) var state: CurrentValueSubject<State, Never> = .init(.none)
     
     //MARK: - Private constants
     private let NUMBER_OF_ELEMENTS = 20
     
-    //MARK: - Sort algorithm objects
-    private var bubbleSort: BubbleSort?
-    
-    //MARK: - Functions
+    //MARK: - INIT
+    init() {
+        repository = AlgorithmModelRepository()
+        generateAlgorithms()
+    }
     
     /// Generate random Int values
     func generateRandomValues() {
@@ -47,10 +52,22 @@ class SortViewModel {
         state.send(.randomValuesGenerated)
     }
     
+    /// Generate algorithms array
+    private func generateAlgorithms() {
+        if let alg = repository?.generateAlgorithms() {
+            algorithms = alg
+        }
+    }
+    
+    /// Get unordered array count
+    /// - Returns: The elements of unorderedRandomValueBars
     func randomValuesCount() -> Int {
         return unorderedRandomValueBars.count
     }
     
+    /// Get bar at specific index of unorderedRandomValueBars
+    /// - Parameter index: The specific index to get bar from
+    /// - Returns:ChartBarView object at specific index
     func getBarAt(index: Int) -> ChartBarView {
         if( index >= 0 && unorderedRandomValueBars.count > index ) {
             return unorderedRandomValueBars[index]
@@ -59,20 +76,28 @@ class SortViewModel {
         }
     }
     
+    /// Get number of elements to draw
+    /// - Returns: NUMBER_OF_ELEMENTS let value
     func getNumberOfElements() -> Int {
         return NUMBER_OF_ELEMENTS
     }
     
-    func sortValuesWith(algorithm: SortAlgorithm, chartView: UIView) {
-        state.send(.sortingRandomValues)
-        
-        switch algorithm {
-        case .bubbleSort:
-            let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
-            bubbleSort.delegate = self
-            bubbleSort.sort()
-        default:
-            print("Sort algorithm unknown")
+    /// Execute sort with selected algorithm
+    /// - Parameter chartView: UIView where animate sorting
+    func sortValuesWith(chartView: UIView) {
+        if let algorithm = algorithms.first(where: { $0.selected }) {
+            state.send(.sortingRandomValues)
+            switch algorithm.type {
+            case .bubbleSort:
+                let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
+                bubbleSort.delegate = self
+                bubbleSort.sort()
+            case .quickSort:
+                let quickSort = QuickSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
+                quickSort.sort()
+            default:
+                print("Sort algorithm unknown")
+            }
         }
     }
 }

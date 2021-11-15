@@ -16,7 +16,6 @@ class ViewController: UIViewController {
     var viewModel = SortViewModel()
     var subscriptions: Set<AnyCancellable> = .init()
     
-    private var algorithms: [AlgorithmModel]!
     private let BAR_X_OFFSET = CGFloat(1)
     private let BAR_Y_OFFSET = CGFloat(2)
     private let BAR_HEIGHT_OFFSET = CGFloat(3)
@@ -31,7 +30,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         customizeUI()
-        algorithms = AlgorithmModelRepository.generateAlgorithms()
         bindViewModel()
         viewModel.generateRandomValues()
     }
@@ -103,12 +101,9 @@ class ViewController: UIViewController {
     
     @IBAction func sortAlgorithm(_ sender: UIButton) {
         if( isUIUnlocked ) {
-            if let alg = algorithms.first(where: { $0.selected }) {
-                viewModel.sortValuesWith(algorithm: alg.type, chartView: chartContainer)
-            }
+            viewModel.sortValuesWith(chartView: chartContainer)
         }
     }
-    
     
 }
 
@@ -116,12 +111,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return algorithms.count
+        return viewModel.algorithms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: AlgorithmTableViewCell.IDENTIFIER) as? AlgorithmTableViewCell {
-            cell.setup(algorithm: algorithms[indexPath.row])
+            cell.setup(algorithm: viewModel.algorithms[indexPath.row])
             return cell
         } else {
             return UITableViewCell()
@@ -141,10 +136,10 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if( isUIUnlocked ) {
-            for index in 0..<algorithms.count {
-                algorithms[index].selected = indexPath.row == index ? true : false
+            for index in 0..<viewModel.algorithms.count {
+                viewModel.algorithms[index].selected = indexPath.row == index ? true : false
                 if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? AlgorithmTableViewCell {
-                    cell.setSelected(algorithms[index].selected)
+                    cell.setSelected(viewModel.algorithms[index].selected)
                 }
             }
         }

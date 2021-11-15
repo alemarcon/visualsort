@@ -29,7 +29,7 @@ struct AlgorithmModel {
 
 class AlgorithmModelRepository {
     
-    static func generateAlgorithms() -> [AlgorithmModel] {
+    func generateAlgorithms() -> [AlgorithmModel] {
         var algorithms = [AlgorithmModel]()
         
         algorithms.append( AlgorithmModel(name: "Bubble Sort", imageName: "letter-b", type: .bubbleSort, selected: true))

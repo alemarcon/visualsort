@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0336A127426637008E31EE /* QuickSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0336A027426637008E31EE /* QuickSort.swift */; };
 		2D6B3FA827297F43004B616F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FA727297F43004B616F /* AppDelegate.swift */; };
 		2D6B3FAA27297F43004B616F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FA927297F43004B616F /* SceneDelegate.swift */; };
 		2D6B3FAC27297F43004B616F /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FAB27297F43004B616F /* SortViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D0336A027426637008E31EE /* QuickSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSort.swift; sourceTree = "<group>"; };
 		2D6B3FA427297F43004B616F /* Visual Sort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Visual Sort.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6B3FA727297F43004B616F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D6B3FA927297F43004B616F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,8 +189,9 @@
 		2DBF5EBE272C46C6006B325E /* Algoritmh */ = {
 			isa = PBXGroup;
 			children = (
-				2DBF5EC0272C46E3006B325E /* BubbleSort.swift */,
 				2D8A81A92731A56D00472697 /* SortDelegate.swift */,
+				2DBF5EC0272C46E3006B325E /* BubbleSort.swift */,
+				2D0336A027426637008E31EE /* QuickSort.swift */,
 			);
 			path = Algoritmh;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				2D8A81AA2731A56D00472697 /* SortDelegate.swift in Sources */,
 				2D6B3FAA27297F43004B616F /* SceneDelegate.swift in Sources */,
 				2D8A81A82731874100472697 /* SortViewModel.swift in Sources */,
+				2D0336A127426637008E31EE /* QuickSort.swift in Sources */,
 				2D714304273E8952003E0999 /* UIVIew+Extensions.swift in Sources */,
 				2DBF5EC1272C46E3006B325E /* BubbleSort.swift in Sources */,
 				2D7142FF273E8616003E0999 /* UIColor+Extensions.swift in Sources */,
