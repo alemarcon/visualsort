@@ -94,7 +94,7 @@ class SortViewModel {
                 bubbleSort.sort()
             case .quickSort:
                 let quickSort = QuickSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
-                quickSort.sort()
+                quickSort.qSort()
             default:
                 print("Sort algorithm unknown")
             }
