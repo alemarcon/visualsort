@@ -10,6 +10,7 @@ import Foundation
 protocol SortDelegate {
     
     /// Method called on sorting completed
-    /// - Parameter sortedValues: <#sortedValues description#>
-    func sortingCompleted(sortedValues: [ChartBarView])
+    func sortingCompleted()
+    
+    func updateAndSwapBar(bars: [ChartBarModel], swapIndexes: [Int], completion: @escaping() -> Void)
 }

@@ -33,7 +33,7 @@ class AlgorithmModelRepository {
         var algorithms = [AlgorithmModel]()
         
         algorithms.append( AlgorithmModel(name: "Bubble Sort", imageName: "letter-b", type: .bubbleSort, selected: true))
-        algorithms.append( AlgorithmModel(name: "Quick Sort", imageName: "letter-q", type: .quickSort, selected: false))
+//        algorithms.append( AlgorithmModel(name: "Quick Sort", imageName: "letter-q", type: .quickSort, selected: false))
         
         return algorithms
     }

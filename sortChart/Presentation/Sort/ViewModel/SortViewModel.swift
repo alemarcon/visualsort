@@ -18,10 +18,11 @@ class SortViewModel {
         case randomValuesGenerated
         case sortingRandomValues
         case randomValuesSorted
+        case swapBars(swapIndexes: [Int])
     }
     
     //MARK: - Private properties
-    private var unorderedRandomValueBars = [ChartBarView]()
+    private var unorderedRandomValueBarModel = [ChartBarModel]()
     private(set) var state: CurrentValueSubject<State, Never> = .init(.none)
     
     //MARK: - Private constants
@@ -35,32 +36,31 @@ class SortViewModel {
     /// Generate random Int values
     func generateRandomValues() {
         state.send(.generatingRandomValues)
-        unorderedRandomValueBars.removeAll()
+        var index = 0
         
-        while unorderedRandomValueBars.count < Int(NUMBER_OF_ELEMENTS) {
+        unorderedRandomValueBarModel.removeAll()
+        
+        while unorderedRandomValueBarModel.count < Int(NUMBER_OF_ELEMENTS) {
             let randomNumber = Int.random(in: 1...Int(NUMBER_OF_ELEMENTS))
-            if( unorderedRandomValueBars.first(where: ({ $0.getChartBarValue() == randomNumber })) == nil ) {
-                unorderedRandomValueBars.append( ChartBarView(value: randomNumber) )
+            if( unorderedRandomValueBarModel.first(where: ({ $0.getBarValue() == randomNumber })) == nil ) {
+                unorderedRandomValueBarModel.append( ChartBarModel(value: randomNumber, indexPath: IndexPath(row: index, section: 0) ) )
+                index = index+1
             }
         }
         
         state.send(.randomValuesGenerated)
     }
     
-    func randomValuesCount() -> Int {
-        return unorderedRandomValueBars.count
-    }
-    
-    func getBarAt(index: Int) -> ChartBarView {
-        if( index >= 0 && unorderedRandomValueBars.count > index ) {
-            return unorderedRandomValueBars[index]
+    func getBarModelAt(index: Int) -> ChartBarModel {
+        if( index >= 0 && unorderedRandomValueBarModel.count > index ) {
+            return unorderedRandomValueBarModel[index]
         } else {
-            return ChartBarView(value: 0)
+            return ChartBarModel(value: 0, indexPath: IndexPath(row: 0, section: 0))
         }
     }
     
-    func getNumberOfElements() -> Int {
-        return NUMBER_OF_ELEMENTS
+    func getNumberOfBarModelElements() -> Int {
+        return unorderedRandomValueBarModel.count
     }
     
     func sortValuesWith(algorithm: SortAlgorithm, chartView: UIView) {
@@ -68,7 +68,7 @@ class SortViewModel {
         
         switch algorithm {
         case .bubbleSort:
-            let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
+            let bubbleSort = BubbleSort(chartsBarModelArray: unorderedRandomValueBarModel)
             bubbleSort.delegate = self
             bubbleSort.sort()
         default:
@@ -80,10 +80,18 @@ class SortViewModel {
 
 extension SortViewModel: SortDelegate {
     
-    func sortingCompleted(sortedValues: [ChartBarView]) {
+    func sortingCompleted() {
         print("Sorting completed")
-        self.unorderedRandomValueBars = sortedValues
         state.send(.randomValuesSorted)
+    }
+    
+    func updateAndSwapBar(bars: [ChartBarModel], swapIndexes: [Int], completion: @escaping () -> Void) {
+        self.unorderedRandomValueBarModel = bars
+        state.send(.swapBars(swapIndexes: swapIndexes))
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) {
+            completion()
+        }
     }
     
 }
