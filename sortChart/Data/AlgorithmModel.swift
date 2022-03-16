@@ -37,7 +37,7 @@ class AlgorithmModelRepository {
         algorithms.append( AlgorithmModel(name: "Bubble Sort", imageName: "letter-b", type: .bubbleSort, selected: true))
 //        algorithms.append( AlgorithmModel(name: "Quick Sort", imageName: "letter-q", type: .quickSort, selected: false))
         algorithms.append( AlgorithmModel(name: "Selection Sort", imageName: "letter-s", type: .seleSort, selected: false))
-        algorithms.append( AlgorithmModel(name: "Insertion Sort", imageName: "letter-s", type: .insertionSort, selected: false))
+        algorithms.append( AlgorithmModel(name: "Insertion Sort", imageName: "letter-i", type: .insertionSort, selected: false))
         
         return algorithms
     }
