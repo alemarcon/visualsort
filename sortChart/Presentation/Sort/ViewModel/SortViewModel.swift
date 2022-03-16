@@ -68,9 +68,15 @@ class SortViewModel {
         
         switch algorithm {
         case .bubbleSort:
+            print("Begin bubble sort algorithm")
             let bubbleSort = BubbleSort(chartsBarModelArray: unorderedRandomValueBarModel)
             bubbleSort.delegate = self
             bubbleSort.sort()
+        case .seleSort:
+            print("Begin selection sort algorithm")
+            let seleSort = SelectionSort(chartsBarModelArray: unorderedRandomValueBarModel)
+            seleSort.delegate = self
+            seleSort.sort()
         default:
             print("Sort algorithm unknown")
         }
