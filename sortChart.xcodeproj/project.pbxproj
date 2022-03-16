@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1DCAFD27E22EE8000EC316 /* SelectionSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1DCAFC27E22EE8000EC316 /* SelectionSort.swift */; };
 		1C50313827E0ACE4008B0794 /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50313627E0ACE4008B0794 /* BarCollectionViewCell.swift */; };
 		1C50313927E0ACE4008B0794 /* BarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C50313727E0ACE4008B0794 /* BarCollectionViewCell.xib */; };
 		1C50313B27E0B0C4008B0794 /* ChartBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50313A27E0B0C4008B0794 /* ChartBarModel.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C1DCAFC27E22EE8000EC316 /* SelectionSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionSort.swift; sourceTree = "<group>"; };
 		1C50313627E0ACE4008B0794 /* BarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewCell.swift; sourceTree = "<group>"; };
 		1C50313727E0ACE4008B0794 /* BarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarCollectionViewCell.xib; sourceTree = "<group>"; };
 		1C50313A27E0B0C4008B0794 /* ChartBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBarModel.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 				2D8A81B02731BC2300472697 /* AlgorithmTableViewCell.xib */,
 			);
 			path = AlgorithmCell;
+			sourceTree = "<group>";
+		};
+		1C1DCAFE27E22F04000EC316 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2D8A81A92731A56D00472697 /* SortDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		1C50313527E0ACBF008B0794 /* BarCell */ = {
@@ -201,8 +211,9 @@
 		2DBF5EBE272C46C6006B325E /* Algoritmh */ = {
 			isa = PBXGroup;
 			children = (
+				1C1DCAFE27E22F04000EC316 /* Delegate */,
 				2DBF5EC0272C46E3006B325E /* BubbleSort.swift */,
-				2D8A81A92731A56D00472697 /* SortDelegate.swift */,
+				1C1DCAFC27E22EE8000EC316 /* SelectionSort.swift */,
 			);
 			path = Algoritmh;
 			sourceTree = "<group>";
@@ -282,6 +293,7 @@
 			files = (
 				2D714307273EC22F003E0999 /* AlgorithmModel.swift in Sources */,
 				2D6B3FAC27297F43004B616F /* SortViewController.swift in Sources */,
+				1C1DCAFD27E22EE8000EC316 /* SelectionSort.swift in Sources */,
 				1C50313827E0ACE4008B0794 /* BarCollectionViewCell.swift in Sources */,
 				2D8A81B12731BC2300472697 /* AlgorithmTableViewCell.swift in Sources */,
 				2D6B3FA827297F43004B616F /* AppDelegate.swift in Sources */,

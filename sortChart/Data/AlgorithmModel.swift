@@ -11,6 +11,7 @@ enum SortAlgorithm {
     case unknow
     case bubbleSort
     case quickSort
+    case seleSort
 }
 
 struct AlgorithmModel {
@@ -34,6 +35,7 @@ class AlgorithmModelRepository {
         
         algorithms.append( AlgorithmModel(name: "Bubble Sort", imageName: "letter-b", type: .bubbleSort, selected: true))
 //        algorithms.append( AlgorithmModel(name: "Quick Sort", imageName: "letter-q", type: .quickSort, selected: false))
+        algorithms.append( AlgorithmModel(name: "Selection Sort", imageName: "letter-b", type: .seleSort, selected: false))
         
         return algorithms
     }
