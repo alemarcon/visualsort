@@ -77,6 +77,11 @@ class SortViewModel {
             let seleSort = SelectionSort(chartsBarModelArray: unorderedRandomValueBarModel)
             seleSort.delegate = self
             seleSort.sort()
+        case .insertionSort:
+            print("Begin insertion sort algorithm")
+            let insertionSort = InsertionSort(chartsBarModelArray: unorderedRandomValueBarModel)
+            insertionSort.delegate = self
+            insertionSort.sort()
         default:
             print("Sort algorithm unknown")
         }
