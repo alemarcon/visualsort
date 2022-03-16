@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C50313827E0ACE4008B0794 /* BarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50313627E0ACE4008B0794 /* BarCollectionViewCell.swift */; };
+		1C50313927E0ACE4008B0794 /* BarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C50313727E0ACE4008B0794 /* BarCollectionViewCell.xib */; };
+		1C50313B27E0B0C4008B0794 /* BarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50313A27E0B0C4008B0794 /* BarModel.swift */; };
 		2D6B3FA827297F43004B616F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FA727297F43004B616F /* AppDelegate.swift */; };
 		2D6B3FAA27297F43004B616F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FA927297F43004B616F /* SceneDelegate.swift */; };
 		2D6B3FAC27297F43004B616F /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B3FAB27297F43004B616F /* SortViewController.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C50313627E0ACE4008B0794 /* BarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarCollectionViewCell.swift; sourceTree = "<group>"; };
+		1C50313727E0ACE4008B0794 /* BarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarCollectionViewCell.xib; sourceTree = "<group>"; };
+		1C50313A27E0B0C4008B0794 /* BarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarModel.swift; sourceTree = "<group>"; };
 		2D6B3FA427297F43004B616F /* Visual Sort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Visual Sort.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D6B3FA727297F43004B616F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D6B3FA927297F43004B616F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C50313527E0ACBF008B0794 /* BarCell */ = {
+			isa = PBXGroup;
+			children = (
+				1C50313627E0ACE4008B0794 /* BarCollectionViewCell.swift */,
+				1C50313727E0ACE4008B0794 /* BarCollectionViewCell.xib */,
+			);
+			path = BarCell;
+			sourceTree = "<group>";
+		};
 		2D6B3F9B27297F43004B616F = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2D714306273EC22F003E0999 /* AlgorithmModel.swift */,
+				1C50313A27E0B0C4008B0794 /* BarModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -170,6 +186,7 @@
 		2D8A81AE2731BC0A00472697 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1C50313527E0ACBF008B0794 /* BarCell */,
 				2D8A81AF2731BC2300472697 /* AlgorithmTableViewCell.swift */,
 				2D8A81B02731BC2300472697 /* AlgorithmTableViewCell.xib */,
 			);
@@ -252,6 +269,7 @@
 			files = (
 				2D714302273E86E6003E0999 /* Colors.xcassets in Resources */,
 				2D6B3FB427297F44004B616F /* LaunchScreen.storyboard in Resources */,
+				1C50313927E0ACE4008B0794 /* BarCollectionViewCell.xib in Resources */,
 				2D8A81B22731BC2300472697 /* AlgorithmTableViewCell.xib in Resources */,
 				2D6B3FB127297F44004B616F /* Assets.xcassets in Resources */,
 				2D6B3FAF27297F43004B616F /* Main.storyboard in Resources */,
@@ -267,6 +285,7 @@
 			files = (
 				2D714307273EC22F003E0999 /* AlgorithmModel.swift in Sources */,
 				2D6B3FAC27297F43004B616F /* SortViewController.swift in Sources */,
+				1C50313827E0ACE4008B0794 /* BarCollectionViewCell.swift in Sources */,
 				2D8A81B12731BC2300472697 /* AlgorithmTableViewCell.swift in Sources */,
 				2D6B3FA827297F43004B616F /* AppDelegate.swift in Sources */,
 				2D8A81AA2731A56D00472697 /* SortDelegate.swift in Sources */,
@@ -274,6 +293,7 @@
 				2D8A81A82731874100472697 /* SortViewModel.swift in Sources */,
 				2D714304273E8952003E0999 /* UIVIew+Extensions.swift in Sources */,
 				2DBF5EC1272C46E3006B325E /* BubbleSort.swift in Sources */,
+				1C50313B27E0B0C4008B0794 /* BarModel.swift in Sources */,
 				2D7142FF273E8616003E0999 /* UIColor+Extensions.swift in Sources */,
 				2DBD906E273282FF000C3611 /* ChartBarView.swift in Sources */,
 			);

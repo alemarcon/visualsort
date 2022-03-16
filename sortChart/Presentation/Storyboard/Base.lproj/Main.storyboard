@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,18 +12,29 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="sortChart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Visual_Sort" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-o3-mOU">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0x-o3-mOU">
                                 <rect key="frame" x="37" y="90" width="340" height="350"/>
                                 <color key="backgroundColor" name="Overlay"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="H0x-o3-mOU" secondAttribute="height" multiplier="34:35" id="qWs-n1-GST"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wVb-Z6-KIg">
+                                <rect key="frame" x="37" y="90" width="340" height="350"/>
+                                <color key="backgroundColor" name="Overlay"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vhc-Iu-29q">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="b8f-NI-r06">
                                 <rect key="frame" x="25" y="460" width="364" height="45"/>
                                 <subviews>
@@ -76,6 +87,8 @@
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="3bQ-9N-Ebq"/>
+                            <constraint firstItem="wVb-Z6-KIg" firstAttribute="width" secondItem="H0x-o3-mOU" secondAttribute="width" id="9r1-6Q-Wm7"/>
+                            <constraint firstItem="wVb-Z6-KIg" firstAttribute="leading" secondItem="H0x-o3-mOU" secondAttribute="leading" id="ACr-0u-BkM"/>
                             <constraint firstItem="zub-uj-V6C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="Efh-lv-g7M"/>
                             <constraint firstItem="faB-iF-uli" firstAttribute="top" secondItem="b8f-NI-r06" secondAttribute="bottom" constant="25" id="FGJ-hg-6Np"/>
                             <constraint firstItem="b8f-NI-r06" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="bottom" constant="20" id="Ju5-ob-3dF"/>
@@ -83,6 +96,7 @@
                             <constraint firstItem="faB-iF-uli" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" id="LfP-Wp-6Mo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b8f-NI-r06" secondAttribute="trailing" constant="25" id="Lsn-vI-gSo"/>
                             <constraint firstItem="faB-iF-uli" firstAttribute="leading" secondItem="b8f-NI-r06" secondAttribute="leading" id="SCn-y6-TUm"/>
+                            <constraint firstItem="wVb-Z6-KIg" firstAttribute="height" secondItem="H0x-o3-mOU" secondAttribute="height" id="SdI-ac-GX5"/>
                             <constraint firstItem="NKz-kn-wZV" firstAttribute="top" secondItem="faB-iF-uli" secondAttribute="bottom" constant="5" id="WWE-55-tBo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="H0x-o3-mOU" secondAttribute="trailing" constant="37" id="WYV-tY-51J"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKz-kn-wZV" secondAttribute="trailing" constant="25" id="Ydm-u3-W9H"/>
@@ -90,12 +104,14 @@
                             <constraint firstItem="NKz-kn-wZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="e9m-QR-zUz"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="gqZ-u2-58r"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="khW-kX-GSX"/>
+                            <constraint firstItem="wVb-Z6-KIg" firstAttribute="top" secondItem="H0x-o3-mOU" secondAttribute="top" id="mC1-iw-UGL"/>
                             <constraint firstItem="H0x-o3-mOU" firstAttribute="top" secondItem="zub-uj-V6C" secondAttribute="bottom" constant="17" id="qKS-a1-oU9"/>
                             <constraint firstItem="zub-uj-V6C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="wzT-Ov-pcU"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="algorithmsTable" destination="NKz-kn-wZV" id="aE5-8y-QTL"/>
+                        <outlet property="chartCollection" destination="wVb-Z6-KIg" id="mRA-Gi-gP6"/>
                         <outlet property="chartContainer" destination="H0x-o3-mOU" id="Ptj-ez-mrx"/>
                     </connections>
                 </viewController>

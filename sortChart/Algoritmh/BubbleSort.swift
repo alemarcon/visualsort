@@ -12,13 +12,15 @@ class BubbleSort {
     
     var delegate: SortDelegate?
     private var chartsArray: [ChartBarView]?
+    private var chartsBarModelArray: [BarModel]?
     private var chart: UIView
     private var duration: Double
     
-    init(chartsArray: [ChartBarView], chart: UIView, duration: Double = 0.003) {
+    init(chartsArray: [ChartBarView], chartsBarModelArray: [BarModel]? = nil, chart: UIView, duration: Double = 0.003) {
         self.chartsArray = chartsArray
         self.chart = chart
         self.duration = duration
+        self.chartsBarModelArray = chartsBarModelArray
     }
     
     /// Start bubble sort array
@@ -29,7 +31,13 @@ class BubbleSort {
     /// Execute first bubble sort loop on array
     /// - Parameter index: The index to start from
     private func runFirstLoopOnArray(index: Int) {
-        if( index < chartsArray?.count ?? 0 ) {
+//        if( index < chartsArray?.count ?? 0 ) {
+//            runSecondLoopOnArray(currentLoopIndex: 0, firstLoopIndex: index)
+//        } else {
+//            delegate?.sortingCompleted(sortedValues: chartsArray!)
+//        }
+        
+        if( index < chartsBarModelArray?.count ?? 0 ) {
             runSecondLoopOnArray(currentLoopIndex: 0, firstLoopIndex: index)
         } else {
             delegate?.sortingCompleted(sortedValues: chartsArray!)
@@ -41,13 +49,45 @@ class BubbleSort {
     ///   - currentLoopIndex: The index to start second loop from
     ///   - firstLoopIndex: The firts loop index
     private func runSecondLoopOnArray(currentLoopIndex: Int, firstLoopIndex: Int) {
-        if( currentLoopIndex < chartsArray!.count-1 ) {
-            if( chartsArray![currentLoopIndex].getChartBarValue() > chartsArray![currentLoopIndex+1].getChartBarValue() ) {
+//        if( currentLoopIndex < chartsArray!.count-1 ) {
+//            if( chartsArray![currentLoopIndex].getChartBarValue() > chartsArray![currentLoopIndex+1].getChartBarValue() ) {
+//
+//                if let biggerBar = chartsArray?[currentLoopIndex], let smallerBar = chartsArray?[currentLoopIndex+1] {
+//                    biggerBar.setColorFor(position: .selected)
+//                    smallerBar.setColorFor(position: .selected)
+//                    swapBarsNew(biggerBar: biggerBar, smallerBar: smallerBar, firstLoopIndex: firstLoopIndex, smallerBarNewIndex: currentLoopIndex, biggerBarNewIndex: currentLoopIndex+1)
+//
+//                }
+//
+//            } else {
+//                self.runSecondLoopOnArray(currentLoopIndex: currentLoopIndex+1, firstLoopIndex: firstLoopIndex)
+//            }
+//        } else {
+//            runFirstLoopOnArray(index: firstLoopIndex+1)
+//        }
+        
+        
+        if( currentLoopIndex < chartsBarModelArray!.count-1 ) {
+            if( chartsBarModelArray![currentLoopIndex].getBarValue() > chartsBarModelArray![currentLoopIndex+1].getBarValue() ) {
                 
-                if let biggerBar = chartsArray?[currentLoopIndex], let smallerBar = chartsArray?[currentLoopIndex+1] {
-                    biggerBar.setColorFor(position: .selected)
-                    smallerBar.setColorFor(position: .selected)
-                    swapBarsNew(biggerBar: biggerBar, smallerBar: smallerBar, firstLoopIndex: firstLoopIndex, smallerBarNewIndex: currentLoopIndex, biggerBarNewIndex: currentLoopIndex+1)
+                if let _ = chartsBarModelArray {
+                    chartsBarModelArray?[currentLoopIndex].setPosition(position: .selected)
+                    chartsBarModelArray?[currentLoopIndex+1].setPosition(position: .selected)
+                    
+                    let barraGrande = chartsBarModelArray![currentLoopIndex]
+                    let barraPiuUno = chartsBarModelArray![currentLoopIndex+1]
+                    
+                    chartsBarModelArray![currentLoopIndex] = barraPiuUno
+                    chartsBarModelArray![currentLoopIndex+1] = barraGrande
+                    
+//                    delegate?.updateAndSwapBar(bars: chartsBarModelArray!, swapIndexes: [currentLoopIndex, currentLoopIndex+1])
+//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.06) {
+//                        self.runSecondLoopOnArray(currentLoopIndex: currentLoopIndex+1, firstLoopIndex: currentLoopIndex)
+//                    }
+                    
+                    delegate?.updateAndSwapBar(bars: chartsBarModelArray!, swapIndexes: [currentLoopIndex, currentLoopIndex+1], completion: {
+                        self.runSecondLoopOnArray(currentLoopIndex: currentLoopIndex+1, firstLoopIndex: currentLoopIndex)
+                    })
                 }
 
             } else {
