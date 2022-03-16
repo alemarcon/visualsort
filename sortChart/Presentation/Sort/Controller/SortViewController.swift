@@ -18,9 +18,6 @@ class ViewController: UIViewController {
     var subscriptions: Set<AnyCancellable> = .init()
     
     private var algorithms: [AlgorithmModel]!
-//    private let BAR_X_OFFSET = CGFloat(1)
-//    private let BAR_Y_OFFSET = CGFloat(2)
-//    private let BAR_HEIGHT_OFFSET = CGFloat(3)
     private let CHART_WIDTH_OFFSET = CGFloat(21)
     private var isUIUnlocked = true
     
@@ -61,10 +58,8 @@ class ViewController: UIViewController {
             case .generatingRandomValues:
                 print("Generating random values")
                 self.lockUI(isUnLocked: false)
-//                self.cleanChartsView()
             case .randomValuesGenerated:
                 print("Random values generated")
-//                self.drawBars()
                 self.chartCollection.reloadData()
                 self.lockUI(isUnLocked: true)
             case .sortingRandomValues:
@@ -81,26 +76,6 @@ class ViewController: UIViewController {
         
     }
     
-//    private func drawBars() {
-//        let singleBarWidth = (chartContainer.frame.size.width-CHART_WIDTH_OFFSET)/CGFloat(viewModel.getNumberOfElements())
-//        let singleBarMinHeight = chartContainer.frame.size.height/CGFloat(viewModel.getNumberOfElements())
-//
-//        for index in 0..<self.viewModel.randomValuesCount() {
-//            let barAtCurrentIndex = self.viewModel.getBarViewAt(index: index)
-//            let currentBarHeight = (CGFloat(barAtCurrentIndex.getChartBarValue())*singleBarMinHeight)-BAR_HEIGHT_OFFSET
-//            let currentBarX = ((singleBarWidth+BAR_X_OFFSET)*CGFloat(index))+BAR_X_OFFSET
-//            let currentBarY = self.chartContainer.bounds.size.height-BAR_Y_OFFSET
-//            barAtCurrentIndex.setupBarFrame(x: currentBarX, y: currentBarY, h: -currentBarHeight, w: singleBarWidth)
-//            self.chartContainer.addSubview(barAtCurrentIndex)
-//        }
-//    }
-    
-//    private func cleanChartsView() {
-//        for subview in chartContainer.subviews {
-//            subview.removeFromSuperview()
-//        }
-//    }
-    
     private func lockUI(isUnLocked: Bool) {
         isUIUnlocked = isUnLocked
     }
@@ -109,9 +84,9 @@ class ViewController: UIViewController {
         print("Begin swap")
         self.chartCollection.performBatchUpdates {
             self.chartCollection.moveItem(at: IndexPath(row: firstIndexToSwap, section: 0), to: IndexPath(row: secondIndexToSwap, section: 0))
-            self.chartCollection.moveItem(at: IndexPath(row: secondIndexToSwap, section: 0), to: IndexPath(row: firstIndexToSwap, section: 0))
         } completion: { completed in
             if(completed) {
+                self.chartCollection.reloadItems(at: [IndexPath(row: firstIndexToSwap, section: 0), IndexPath(row: secondIndexToSwap, section: 0)])
                 print("Swap Completed")
             }
         }

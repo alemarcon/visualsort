@@ -22,7 +22,7 @@ class BarCollectionViewCell: UICollectionViewCell {
         setColorFor(position: .unordered)
     }
     
-    func setupBar(by model: BarModel, chartCollection: UICollectionView) {
+    func setupBar(by model: ChartBarModel, chartCollection: UICollectionView) {
         position.text = "\(model.getBarValue())"
         setColorFor(position: model.getPosition())
         setBarSize(chartCollection: chartCollection, value: model.getBarValue())

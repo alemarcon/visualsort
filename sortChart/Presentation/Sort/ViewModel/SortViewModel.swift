@@ -22,8 +22,7 @@ class SortViewModel {
     }
     
     //MARK: - Private properties
-    private var unorderedRandomValueBars = [ChartBarView]()
-    private var unorderedRandomValueBarModel = [BarModel]()
+    private var unorderedRandomValueBarModel = [ChartBarModel]()
     private(set) var state: CurrentValueSubject<State, Never> = .init(.none)
     
     //MARK: - Private constants
@@ -37,23 +36,14 @@ class SortViewModel {
     /// Generate random Int values
     func generateRandomValues() {
         state.send(.generatingRandomValues)
-        unorderedRandomValueBars.removeAll()
-        
-        while unorderedRandomValueBars.count < Int(NUMBER_OF_ELEMENTS) {
-            let randomNumber = Int.random(in: 1...Int(NUMBER_OF_ELEMENTS))
-            if( unorderedRandomValueBars.first(where: ({ $0.getChartBarValue() == randomNumber })) == nil ) {
-                unorderedRandomValueBars.append( ChartBarView(value: randomNumber) )
-            }
-        }
-        // Create BarModel elements to draw bars on collection view
-        unorderedRandomValueBarModel.removeAll()
-        
         var index = 0
+        
+        unorderedRandomValueBarModel.removeAll()
         
         while unorderedRandomValueBarModel.count < Int(NUMBER_OF_ELEMENTS) {
             let randomNumber = Int.random(in: 1...Int(NUMBER_OF_ELEMENTS))
             if( unorderedRandomValueBarModel.first(where: ({ $0.getBarValue() == randomNumber })) == nil ) {
-                unorderedRandomValueBarModel.append( BarModel(value: randomNumber, indexPath: IndexPath(row: index, section: 0) ) )
+                unorderedRandomValueBarModel.append( ChartBarModel(value: randomNumber, indexPath: IndexPath(row: index, section: 0) ) )
                 index = index+1
             }
         }
@@ -61,27 +51,11 @@ class SortViewModel {
         state.send(.randomValuesGenerated)
     }
     
-    func randomValuesCount() -> Int {
-        return unorderedRandomValueBars.count
-    }
-    
-    func getBarViewAt(index: Int) -> ChartBarView {
-        if( index >= 0 && unorderedRandomValueBars.count > index ) {
-            return unorderedRandomValueBars[index]
-        } else {
-            return ChartBarView(value: 0)
-        }
-    }
-    
-    func getNumberOfElements() -> Int {
-        return NUMBER_OF_ELEMENTS
-    }
-    
-    func getBarModelAt(index: Int) -> BarModel {
+    func getBarModelAt(index: Int) -> ChartBarModel {
         if( index >= 0 && unorderedRandomValueBarModel.count > index ) {
             return unorderedRandomValueBarModel[index]
         } else {
-            return BarModel(value: 0, indexPath: IndexPath(row: 0, section: 0))
+            return ChartBarModel(value: 0, indexPath: IndexPath(row: 0, section: 0))
         }
     }
     
@@ -94,8 +68,7 @@ class SortViewModel {
         
         switch algorithm {
         case .bubbleSort:
-//            let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chart: chartView, duration: 0.1)
-            let bubbleSort = BubbleSort(chartsArray: unorderedRandomValueBars, chartsBarModelArray: unorderedRandomValueBarModel, chart: chartView, duration: 0.1)
+            let bubbleSort = BubbleSort(chartsBarModelArray: unorderedRandomValueBarModel)
             bubbleSort.delegate = self
             bubbleSort.sort()
         default:
@@ -107,21 +80,14 @@ class SortViewModel {
 
 extension SortViewModel: SortDelegate {
     
-    func sortingCompleted(sortedValues: [ChartBarView]) {
+    func sortingCompleted() {
         print("Sorting completed")
-        self.unorderedRandomValueBars = sortedValues
         state.send(.randomValuesSorted)
     }
     
-    func updateAndSwapBar(bars: [BarModel], swapIndexes: [Int]) {
+    func updateAndSwapBar(bars: [ChartBarModel], swapIndexes: [Int], completion: @escaping () -> Void) {
         self.unorderedRandomValueBarModel = bars
         state.send(.swapBars(swapIndexes: swapIndexes))
-    }
-    
-    func updateAndSwapBar(bars: [BarModel], swapIndexes: [Int], completion: @escaping () -> Void) {
-        self.unorderedRandomValueBarModel = bars
-        state.send(.swapBars(swapIndexes: swapIndexes))
-        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+0.05) {
             completion()
