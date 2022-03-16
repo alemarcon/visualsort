@@ -68,6 +68,7 @@ class ViewController: UIViewController {
             case .randomValuesSorted:
                 print("Value sorted")
                 self.lockUI(isUnLocked: true)
+                self.chartCollection.reloadData()
             case .swapBars(let swapIndexes):
                 self.swapCollectionBars(firstIndexToSwap: swapIndexes[0], secondIndexToSwap: swapIndexes[1])
             }
@@ -81,13 +82,13 @@ class ViewController: UIViewController {
     }
     
     private func swapCollectionBars(firstIndexToSwap: Int, secondIndexToSwap: Int) {
-        print("Begin swap")
+//        print("Begin swap")
         self.chartCollection.performBatchUpdates {
             self.chartCollection.moveItem(at: IndexPath(row: firstIndexToSwap, section: 0), to: IndexPath(row: secondIndexToSwap, section: 0))
         } completion: { completed in
             if(completed) {
                 self.chartCollection.reloadItems(at: [IndexPath(row: firstIndexToSwap, section: 0), IndexPath(row: secondIndexToSwap, section: 0)])
-                print("Swap Completed")
+//                print("Swap Completed")
             }
         }
     }
@@ -143,6 +144,7 @@ extension ViewController: UITableViewDelegate {
                     cell.setSelected(algorithms[index].selected)
                 }
             }
+            viewModel.generateRandomValues()
         }
     }
 }
