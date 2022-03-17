@@ -28,7 +28,7 @@ The selection sort algorithm sorts an array by repeatedly finding the minimum el
 2) Remaining subarray which is unsorted.
 In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray. 
 
-## Selection sort
+## Insertion sort
 
 Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually split into a sorted and an unsorted part. Values from the unsorted part are picked and placed at the correct position in the sorted part.
 
