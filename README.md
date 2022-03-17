@@ -9,8 +9,8 @@ The aim of the project is to graphically represent the effectiveness that data s
 
 # Requirements
 
-Xcode 13.2.1
-Swift 5
+Xcode 13.2.1  
+Swift 5  
 iOS 13.0
 
 # Implemented Algorithms
